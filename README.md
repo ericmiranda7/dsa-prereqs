@@ -1,4 +1,11 @@
 # dsa-prereqs
+
+An implementation of the following in python, that is hopefully
+- Nice and modular
+- Well documented
+- Well tested
+- Well working
+
 ### Data Structures
 
 - [ ]  Stacks & Queues
