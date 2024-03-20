@@ -38,5 +38,22 @@ class StackTests(unittest.TestCase):
 
         self.assertEqual(self.stack.peek(), 14)
 
+    def test_random_push_pops(self):
+        for i in range(5):
+            self.stack.push(i)
+            
+        first_pop = self.stack.pop()
+        self.stack.push(3)
+        self.stack.push(4)
+        second_pop = self.stack.pop()
+        third_pop = self.stack.pop()
+        self.stack.push(67)
+
+        self.assertEqual(first_pop, 4)
+        self.assertEqual(second_pop, 4)
+        self.assertEqual(third_pop, 3)
+        self.assertEqual(self.stack.peek(), 67)
+        self.assertEqual(self.stack.size, 5)
+        
 if __name__ == '__main__':
     unittest.main()
