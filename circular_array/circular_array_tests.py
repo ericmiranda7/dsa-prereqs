@@ -49,7 +49,8 @@ class CircularArrayTests(unittest.TestCase):
         for i in range(15):
             self.ca.insert(i)
 
-        self.assertEqual(self.size, 15)
+        self.assertEqual(self.ca.size, 15)
+        self.assertEqual(self.ca.print_items(), "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14")
 
     def test_peek_head(self):
         self.ca.insert(1)
@@ -78,6 +79,8 @@ class CircularArrayTests(unittest.TestCase):
         self.ca.append(3)
 
         self.assertEqual(self.ca.print_items(), "1 2 3")
+
+    # test removes
 
 
 if __name__ == '__main__':
