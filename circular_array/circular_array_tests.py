@@ -50,7 +50,7 @@ class CircularArrayTests(unittest.TestCase):
             self.ca.insert(i)
 
         self.assertEqual(self.ca.size, 15)
-        self.assertEqual(self.ca.print_items(), "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14")
+        self.assertListEqual(self.ca.list_items(), [x - 1 for x in range(15, 0, -1)])
 
     def test_peek_head(self):
         self.ca.insert(1)
@@ -71,19 +71,23 @@ class CircularArrayTests(unittest.TestCase):
         self.ca.append(7) # 4 3 0 1 8 7
         self.ca.append(69) # 4 3 0 1 8 7 69
 
-        self.assertEqual(self.ca.print_items(), "4 3 0 1 8 7 69")
+        self.assertListEqual(self.ca.list_items(), [4, 3, 0, 1, 8, 7, 69])
 
-    def test_print_items(self):
+    def test_list_items(self):
         self.ca.insert(1)
         self.ca.append(2)
         self.ca.append(3)
 
-        self.assertEqual(self.ca.print_items(), "1 2 3")
+        self.assertListEqual(self.ca.list_items(), [1, 2, 3])
 
     # test removes
 
 
 if __name__ == '__main__':
+    # suite = unittest.TestSuite()
+    # suite.addTest(CircularArrayTests("test_resizing_array"))
+    # runner = unittest.TextTestRunner()
+    # runner.run(suite)
     unittest.main()
     
     

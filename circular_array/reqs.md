@@ -4,4 +4,4 @@ I shall be able to
 - [ ] The array resizes itself as and when needed
 - [x] Insert either at the beginning or at the end
 - [ ] Remove from either the beginning or the end
-- [ ] Obtain the size of the array
+- [x] Obtain the size of the array

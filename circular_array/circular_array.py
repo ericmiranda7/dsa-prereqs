@@ -9,12 +9,20 @@ class CircularArray:
 
 
     def insert(self, item):
+        if self.size == self.capacity:
+            self.__resize()
+        assert self.array[self.head] == None
+
         self.array[self.head] = item
         self.size += 1
         
         self.__move_head()
 
     def append(self, item):
+        if self.size == self.capacity:
+            self.__resize()
+        assert self.array[self.tail] == None
+
         self.array[self.tail] = item
         self.size += 1
 
@@ -26,19 +34,27 @@ class CircularArray:
     def peek_tail(self):
         return self.array[self.tail - 1] if self.tail > 0 else self.array[self.capacity - 1]
 
-    def print_items(self):
-        """Prints in the order from head to tail"""
+    def list_items(self):
+        """Returns an array with items in the order from head to tail"""
 
-        tmp_head = self.head
-        res_string = ""
-        while tmp_head != self.tail:
+        tmp_head = self.head + 1
+        if tmp_head >= self.capacity:
+            tmp_head = 0
+
+        res_arr = []
+        while tmp_head != self.head:
             if self.array[tmp_head] != None:
-                res_string += str(self.array[tmp_head]) + " "
+                res_arr.append(self.array[tmp_head])
+
             tmp_head += 1
-            if tmp_head == self.capacity:
+            if tmp_head >= self.capacity:
                 tmp_head = 0
 
-        return res_string[:-1]
+
+        if self.array[tmp_head] != None:
+            res_arr.append(self.array[tmp_head])
+
+        return res_arr
 
 
     def __move_head(self):
@@ -48,9 +64,6 @@ class CircularArray:
         
         if self.head == -1:
             self.head = self.capacity - 1
-            if self.head == self.tail:
-                # resize
-                pass
 
     def __move_tail(self):
         self.tail += 1
@@ -59,7 +72,17 @@ class CircularArray:
 
         if self.tail == self.capacity:
             self.tail = 0
-            if self.tail == self.head:
-                # resize
-                pass
+
+    def __resize(self):
+        new_array = [None] * (self.capacity * 2)
+        existing_items = self.list_items()
+
+        for i in range(len(existing_items)):
+            new_array[i] = existing_items[i]
+
+        self.array = new_array
+        self.capacity *= 2
+        self.head = self.capacity - 1
+        self.tail = len(existing_items) + 1
+
 
